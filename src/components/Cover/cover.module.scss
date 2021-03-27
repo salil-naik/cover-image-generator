@@ -1,0 +1,45 @@
+.cover {
+  height: 210px;
+  width: 841px;
+  border-bottom: 8px solid;
+  color: white;
+  padding: 20px;
+  position: relative;
+}
+
+.name {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.headline {
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: lowercase;
+}
+
+.rightContent {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 40px);
+  max-width: 406px;
+}
+
+.tagline {
+  font-size: 26px;
+  font-weight: 500;
+  text-align: right;
+}
+
+.highlights {
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: capitalize;
+  text-align: right;
+  padding-left:50px;
+}
