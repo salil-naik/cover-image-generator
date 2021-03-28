@@ -1,10 +1,6 @@
 .coverWrapper {
   background: #00c9ff; /* fallback for old browsers */
-  background: linear-gradient(
-    to right,
-    #92fe9d,
-    #00c9ff
-  ); 
+  background: linear-gradient(to right, #92fe9d, #00c9ff);
   height: 270px;
   width: 100%;
   // position: fixed;
@@ -53,16 +49,12 @@
   left: 0;
   width: 100%;
   background: #141e30; /* fallback for old browsers */
-  background: linear-gradient(
-    to right,
-    #243b55,
-    #141e30
-  ); 
-  color:white;
+  background: linear-gradient(to right, #243b55, #141e30);
+  color: white;
   z-index: 10;
 
-  a{
-    color:inherit;
+  a {
+    color: inherit;
   }
 }
 
@@ -80,14 +72,53 @@
   font-size: 12px;
   color: black;
   // background-color: #7d58fe;
-  background-color:white;
+  background-color: white;
   border-radius: 2px;
   cursor: pointer;
   text-transform: uppercase;
   font-weight: 500;
 
   &:hover {
-    background-color: #7d58fe;
-    color:white;
+    background-color: #04CBFC;
+  }
+}
+
+.ghTagContainer {
+  width: 140px;
+  height: 140px;
+  background-color: black;
+  transform: rotateZ(45deg);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: fixed;
+  top: -70px;
+  right: -70px;
+  padding-bottom: 15px;
+  border-radius: 70px;
+  z-index: 12;
+  cursor: pointer;
+
+  &:hover .ghSvg {
+    transform: rotateZ(-45deg);
+    transition: 0.2s ease;
+  }
+}
+
+.ghSvg {
+  fill: white;
+  height: 30px;
+  width: 30px;
+  transition: 0.2s ease;
+}
+
+@media only screen and (max-width: 841px) {
+  .coverWrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+
+  .scrollContainer {
+    padding: 20px 6px;
   }
 }
