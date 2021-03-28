@@ -1,17 +1,21 @@
 import { useState, useRef } from "react";
 import style from "./app.module.scss";
+import color from "./color-blocks.module.scss";
 
 import html2canvas from "html2canvas";
 
 // components
 import { Cover } from "./components/Cover/index";
 import { Header } from "./components/Header/index";
+import { ColorBlock } from "./components/ColorBlock/index";
 
 function App() {
   const [name, setName] = useState("");
   const [headline, setHeadline] = useState("");
   const [highlights, setHighlights] = useState("");
   const [tagline, setTagline] = useState("");
+  const [bgColor, setBgColor] = useState("#161B22");
+  const [borderColor, setBorderColor] = useState("#0F6D31");
 
   const coverRef = useRef(null);
 
@@ -26,6 +30,7 @@ function App() {
     });
   };
 
+  // function to handle the input elements
   function handleForm(event) {
     const { name, value } = event.target;
 
@@ -35,75 +40,89 @@ function App() {
     else if (name === "tagline") setTagline(value);
   }
 
+  // function to change colours
+  function changeColor(bg, border) {
+    setBgColor(bg);
+    setBorderColor(border);
+  }
+
+  let colorArr = [
+    ["#161B22", "#0F6D31"],
+    ["#5039A3", "#FC9776"],
+    ["#060607", "#3D5FF8"],
+    ["#172346", "#4FD0ED"],
+    ["#292C31", "#E94C2B"]
+  ];
+
   return (
     <>
       <Header />
+
       <div className="grid-container">
+        {/* Form */}
         <form className={style.form}>
           <div className="grid-x grid-margin-x">
-            <div className="cell large-3">
-              <label htmlFor="name" className={style.label}>
-                Your Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={name}
-                onChange={handleForm}
-                className={style.input}
-                placeholder="Enter your name here"
-              />
-            </div>
-
-            <div className="cell large-3">
-              <label htmlFor="headline" className={style.label}>
-                Headline
-              </label>
-              <input
-                type="text"
-                name="headline"
-                value={headline}
-                onChange={handleForm}
-                className={style.input}
-              />
-            </div>
-
-            <div className="cell large-3">
-              <label htmlFor="highlights" className={style.label}>
-                Highlights / Skills
-              </label>
-              <input
-                type="text"
-                name="highlights"
-                value={highlights}
-                onChange={handleForm}
-                className={style.input}
-              />
-            </div>
-
-            <div className="cell large-3">
-              <label htmlFor="tagline" className={style.label}>
-                Tagline / Mission
-              </label>
-              <input
-                type="text"
-                name="tagline"
-                value={tagline}
-                onChange={handleForm}
-                className={style.input}
-              />
-            </div>
+            {[
+              ["name", name],
+              ["headline", headline],
+              ["highlights", highlights],
+              ["tagline", tagline],
+            ].map((item) => {
+              return (
+                <div className="cell large-3">
+                  <label htmlFor={item[0]} className={style.label}>
+                    {item[0]}
+                  </label>
+                  <input
+                    type="text"
+                    name={item[0]}
+                    value={item[1]}
+                    onChange={handleForm}
+                    className={style.input}
+                  />
+                </div>
+              );
+            })}
           </div>
         </form>
 
-        <div className="cell large-12">
-          <Cover
-            name={name}
-            headline={headline}
-            highlights={highlights}
-            tagline={tagline}
-            coverRef={coverRef}
-          />
+        <div className="grid-x grid-margin-x">
+          {/* Cover Display */}
+          <div className="cell large-12">
+            <Cover
+              name={name}
+              headline={headline}
+              highlights={highlights}
+              tagline={tagline}
+              coverRef={coverRef}
+              bgColor={bgColor}
+              borderColor={borderColor}
+            />
+          </div>
+
+          {/* Color selection */}
+          <div className="cell large-6">
+            <div className={color.container}>
+              <h3 className={color.title}>Choose colors</h3>
+              <div className={color.railContainer}>
+                <div className={color.rail}>
+                  {colorArr.map((colors) => {
+                    return (
+                      <div
+                        onClick={() => {
+                          changeColor(colors[0], colors[1]);
+                        }}
+                      >
+                        <ColorBlock
+                          color={{ bg: colors[0], border: colors[1] }}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <footer className={style.footer}>
@@ -111,7 +130,7 @@ function App() {
             <div className={style.flex}>
               <p>Designed and developed Salil Naik</p>
               <div className={style.button} onClick={downloadCover}>
-                Downlaod Cover
+                Download Cover
               </div>
             </div>
           </div>

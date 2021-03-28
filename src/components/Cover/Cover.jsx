@@ -1,11 +1,11 @@
 import style from "./cover.module.scss";
 
-export function Cover({name, headline, highlights, tagline, coverRef}) {
+export function Cover({name, headline, highlights, tagline, coverRef, bgColor, borderColor}) {
   return (
     <>
       <div
         className={style.cover}
-        style={{ background: "#161B22", borderBottomColor: "#0F6D31" }}
+        style={{ background: bgColor, borderBottomColor: borderColor }}
         ref={coverRef}
       >
         <div className={style.name}>{name}</div>

@@ -1,0 +1,23 @@
+.title{
+    margin:0;
+    color: #333;
+    margin-left:30px;
+}
+
+.container{
+    margin:30px 0;
+    background-color:white; 
+    padding:30px 0; 
+    border-radius:10px; 
+    border:1px solid rgb(232,232,232);
+    margin-bottom:100px;
+}
+
+.railContainer{
+    overflow-x:scroll;
+}
+
+.rail{
+    display:flex;
+    padding:30px;
+}
