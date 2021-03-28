@@ -2,6 +2,8 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  overflow-y: hidden;
   /* background-color: #F4F3F9; */
 }
 

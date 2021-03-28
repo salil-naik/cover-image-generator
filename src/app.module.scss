@@ -1,7 +1,24 @@
-/* .form {
-   max-width: 841px; 
-  margin: auto;
-} */
+.coverWrapper {
+  background: #00c9ff; /* fallback for old browsers */
+  background: linear-gradient(
+    to right,
+    #92fe9d,
+    #00c9ff
+  ); 
+  height: 270px;
+  width: 100%;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // z-index: 10;
+  padding: 30px 0;
+}
+
+.scrollContainer {
+  height: calc(100vh - (270px + 60px));
+  overflow-y: scroll;
+  padding: 30px 0 30px 14px;
+}
 
 .label {
   font-size: 14px;
@@ -17,11 +34,11 @@
   width: 100%;
   outline: 0;
   border: 0;
-  border-left: 6px solid #7D58FE;
-  border:1px solid rgb(232,232,232);
+  border-left: 6px solid #7d58fe;
+  border: 1px solid rgb(232, 232, 232);
   padding: 0 14px;
   border-radius: 4px;
-  background-color: rgb(244,244,244);
+  background-color: rgb(244, 244, 244);
   margin-bottom: 20px;
   /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.02); */
   font-size: 15px;
@@ -30,35 +47,47 @@
 }
 
 .footer {
-    height: 80px;
-    border-top: 1px solid gray;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width:100%;
-    background-color:white;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #141e30; /* fallback for old browsers */
+  background: linear-gradient(
+    to right,
+    #243b55,
+    #141e30
+  ); 
+  color:white;
+  z-index: 10;
+
+  a{
+    color:inherit;
   }
-  
-  .flex{
-      width: 100%;
-      display:flex; 
-      justify-content: space-between;
-      align-items: center;
-      height:80px;
-  }
-  
-  .button {
-    display: inline-flex;
-    padding: 10px 20px;
-    font-size: 15px;
-    color: white;
+}
+
+.flex {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+.button {
+  display: inline-flex;
+  padding: 8px 14px;
+  font-size: 12px;
+  color: black;
+  // background-color: #7d58fe;
+  background-color:white;
+  border-radius: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  &:hover {
     background-color: #7d58fe;
-    border-radius: 4px;
-    cursor:pointer;
-    
-    &:hover{
-      background-color:#222;
-    }
+    color:white;
   }
-  
-  
+}

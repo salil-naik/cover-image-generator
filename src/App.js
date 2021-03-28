@@ -21,11 +21,14 @@ function App() {
 
   // function to download the cover image
   const downloadCover = () => {
-    html2canvas(coverRef.current).then((canvas) => {
+    html2canvas(coverRef.current, {
+      scrollX: -window.scrollX,
+      scrollY: -window.scrollY,
+    }).then((canvas) => {
       var img = canvas.toDataURL();
       let a = document.createElement("a");
       a.href = img;
-      a.download = `report.png`;
+      a.download = `${name}'s-cover.png`;
       a.click();
     });
   };
@@ -46,95 +49,106 @@ function App() {
     setBorderColor(border);
   }
 
+  // Array of color schemes
   let colorArr = [
     ["#161B22", "#0F6D31"],
     ["#5039A3", "#FC9776"],
     ["#060607", "#3D5FF8"],
     ["#172346", "#4FD0ED"],
-    ["#292C31", "#E94C2B"]
+    ["#292C31", "#E94C2B"],
   ];
 
   return (
     <>
-      <Header />
+      {/* FIXED ELEMENTS */}
+      {/* <Header /> */}
 
-      <div className="grid-container">
-        {/* Form */}
-        <form className={style.form}>
-          <div className="grid-x grid-margin-x">
-            {[
-              ["name", name],
-              ["headline", headline],
-              ["highlights", highlights],
-              ["tagline", tagline],
-            ].map((item) => {
-              return (
-                <div className="cell large-3">
-                  <label htmlFor={item[0]} className={style.label}>
-                    {item[0]}
-                  </label>
-                  <input
-                    type="text"
-                    name={item[0]}
-                    value={item[1]}
-                    onChange={handleForm}
-                    className={style.input}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </form>
+      {/* Cover Display */}
+      <div className={style.coverWrapper}>
+        <Cover
+          name={name === "" ? "Your name here" : name}
+          headline={headline === "" ? "Headline comes here" : headline}
+          highlights={
+            highlights === "" ? "Your highlights and achievements" : highlights
+          }
+          tagline={
+            tagline === ""
+              ? "A tagline, a quote or your goals/missions"
+              : tagline
+          }
+          coverRef={coverRef}
+          bgColor={bgColor}
+          borderColor={borderColor}
+        />
+      </div>
 
-        <div className="grid-x grid-margin-x">
-          {/* Cover Display */}
-          <div className="cell large-12">
-            <Cover
-              name={name}
-              headline={headline}
-              highlights={highlights}
-              tagline={tagline}
-              coverRef={coverRef}
-              bgColor={bgColor}
-              borderColor={borderColor}
-            />
+      <footer className={style.footer}>
+        <div className="grid-container">
+          <div className={style.flex}>
+            <p>Cover Generator <span style={{fontSize: '12px', opacity: '0.7'}}>by <a href="" target="_blank">Salil Naik</a></span></p>
+            <div className={style.button} onClick={downloadCover}>
+              Download Cover
+            </div>
           </div>
+        </div>
+      </footer>
+
+      {/* SCROLLABLE ELEMENTS */}
+
+      <div className={style.scrollContainer}>
+        <div className="grid-container">
+          {/* Form */}
+          <form className={style.form}>
+            <div className="grid-x grid-margin-x">
+              {[
+                ["name", name],
+                ["headline", headline],
+                ["highlights", highlights],
+                ["tagline", tagline],
+              ].map((item) => {
+                return (
+                  <div className="cell large-3">
+                    <label htmlFor={item[0]} className={style.label}>
+                      {item[0]}
+                    </label>
+                    <input
+                      type="text"
+                      name={item[0]}
+                      value={item[1]}
+                      onChange={handleForm}
+                      className={style.input}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </form>
 
           {/* Color selection */}
-          <div className="cell large-6">
-            <div className={color.container}>
-              <h3 className={color.title}>Choose colors</h3>
-              <div className={color.railContainer}>
-                <div className={color.rail}>
-                  {colorArr.map((colors) => {
-                    return (
-                      <div
-                        onClick={() => {
-                          changeColor(colors[0], colors[1]);
-                        }}
-                      >
-                        <ColorBlock
-                          color={{ bg: colors[0], border: colors[1] }}
-                        />
-                      </div>
-                    );
-                  })}
+          <div className="grid-x grid-margin-x">
+            <div className="cell large-6">
+              <div className={color.container}>
+                <div className={color.railContainer}>
+                  <div className={color.rail}>
+                    {colorArr.map((colors) => {
+                      return (
+                        <div
+                          onClick={() => {
+                            changeColor(colors[0], colors[1]);
+                          }}
+                        >
+                          <ColorBlock
+                            color={{ bg: colors[0], border: colors[1] }}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <footer className={style.footer}>
-          <div className="grid-container">
-            <div className={style.flex}>
-              <p>Designed and developed Salil Naik</p>
-              <div className={style.button} onClick={downloadCover}>
-                Download Cover
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
     </>
   );

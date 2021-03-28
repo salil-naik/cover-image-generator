@@ -1,11 +1,11 @@
 .button{
-    height:70px;
-    width:70px; 
+    height:40px;
+    width:40px; 
     position: relative;
     border:6px solid;
-    border-radius:35px;
+    border-radius:20px;
     cursor:pointer;
-    margin-right:30px;
+    margin-right:20px;
     transition: 0.2s ease-out;
 
     &:hover{
