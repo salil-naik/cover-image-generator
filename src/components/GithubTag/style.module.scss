@@ -1,0 +1,29 @@
+
+.ghTagContainer {
+    width: 140px;
+    height: 140px;
+    background-color: black;
+    transform: rotateZ(45deg);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: fixed;
+    top: -70px;
+    right: -70px;
+    padding-bottom: 15px;
+    border-radius: 70px;
+    z-index: 12;
+    cursor: pointer;
+  
+    &:hover .ghSvg {
+      transform: rotateZ(-45deg);
+      transition: 0.2s ease;
+    }
+  }
+  
+  .ghSvg {
+    fill: white;
+    height: 30px;
+    width: 30px;
+    transition: 0.2s ease;
+  }
